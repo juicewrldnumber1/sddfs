@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival.io - Multiplayer Survival Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="mainMenu" class="menu">
+        <div class="menu-content">
+            <h1>🎮 SURVIVAL.IO</h1>
+            <p>Gather. Build. Survive.</p>
+            <input type="text" id="playerName" placeholder="Enter your name" maxlength="15" value="Player">
+            <button id="playBtn" class="btn-primary">PLAY</button>
+            <div class="instructions">
+                <p><strong>WASD</strong> or <strong>Arrow Keys</strong> to Move</p>
+                <p><strong>Click</strong> to Attack/Gather</p>
+                <p><strong>1-9</strong> Select Tool/Building</p>
+                <p><strong>Space</strong> to Auto-Attack</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameUI" class="hidden">
+        <div id="resourcesBar">
+            <div class="resource"><span class="icon">🪵</span><span id="woodCount">0</span></div>
+            <div class="resource"><span class="icon">🪨</span><span id="stoneCount">0</span></div>
+            <div class="resource"><span class="icon">🍎</span><span id="foodCount">0</span></div>
+            <div class="resource"><span class="icon">🪙</span><span id="goldCount">0</span></div>
+        </div>
+
+        <div id="healthBar">
+            <div id="healthFill"></div>
+            <span id="healthText">100/100</span>
+        </div>
+
+        <div id="ageDisplay">
+            <span>Age <span id="ageNum">1</span></span>
+            <div id="xpBar"><div id="xpFill"></div></div>
+        </div>
+
+        <div id="toolbar">
+            <div class="tool-slot active" data-tool="hand" data-key="1"><span class="tool-icon">👊</span><span class="tool-key">1</span></div>
+            <div class="tool-slot" data-tool="pickaxe" data-key="2"><span class="tool-icon">⛏️</span><span class="tool-key">2</span></div>
+            <div class="tool-slot" data-tool="sword" data-key="3"><span class="tool-icon">⚔️</span><span class="tool-key">3</span></div>
+            <div class="tool-slot" data-tool="bow" data-key="4"><span class="tool-icon">🏹</span><span class="tool-key">4</span></div>
+            <div class="tool-slot" data-tool="wall" data-key="5"><span class="tool-icon">🧱</span><span class="tool-key">5</span></div>
+            <div class="tool-slot" data-tool="spike" data-key="6"><span class="tool-icon">🔺</span><span class="tool-key">6</span></div>
+            <div class="tool-slot" data-tool="windmill" data-key="7"><span class="tool-icon">🌪️</span><span class="tool-key">7</span></div>
+        </div>
+
+        <div id="craftingMenu" class="hidden">
+            <h3>Crafting</h3>
+            <div class="craft-item" data-item="pickaxe"><span>⛏️ Pickaxe</span><span class="cost">10🪵 5🪨</span></div>
+            <div class="craft-item" data-item="sword"><span>⚔️ Sword</span><span class="cost">15🪵 10🪨</span></div>
+            <div class="craft-item" data-item="bow"><span>🏹 Bow</span><span class="cost">20🪵 5🪨</span></div>
+        </div>
+
+        <div id="leaderboard">
+            <h3>🏆 Leaderboard</h3>
+            <div id="leaderboardList"></div>
+        </div>
+
+        <div id="chat">
+            <div id="chatMessages"></div>
+            <input type="text" id="chatInput" placeholder="Press Enter to chat..." maxlength="50">
+        </div>
+
+        <div id="deathScreen" class="hidden">
+            <h2>💀 YOU DIED</h2>
+            <p>Respawning in <span id="respawnTimer">5</span>...</p>
+        </div>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/network.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

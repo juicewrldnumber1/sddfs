@@ -1,0 +1,62 @@
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; color: white; overflow: hidden; position: relative; }
+.hidden { display: none !important; }
+
+.menu { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.menu-content { text-align: center; background: rgba(255, 255, 255, 0.05); padding: 60px; border-radius: 20px; border: 2px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
+.menu-content h1 { font-size: 4em; margin-bottom: 10px; text-shadow: 0 0 20px rgba(0, 255, 255, 0.5); background: linear-gradient(45deg, #00ffff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.menu-content p { font-size: 1.5em; color: #888; margin-bottom: 30px; }
+#playerName { width: 300px; padding: 15px; font-size: 1.2em; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(0, 0, 0, 0.3); color: white; text-align: center; margin-bottom: 20px; outline: none; transition: all 0.3s; }
+#playerName:focus { border-color: #00ffff; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+.btn-primary { width: 300px; padding: 15px; font-size: 1.3em; font-weight: bold; border: none; border-radius: 10px; background: linear-gradient(45deg, #00ffff, #0080ff); color: white; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 2px; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4); }
+.instructions { margin-top: 40px; padding: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 10px; }
+.instructions p { font-size: 1em; margin: 10px 0; color: #aaa; }
+
+#gameUI { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
+#gameUI > * { pointer-events: auto; }
+#resourcesBar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; background: rgba(0, 0, 0, 0.6); padding: 10px 25px; border-radius: 50px; border: 2px solid rgba(255, 255, 255, 0.1); }
+.resource { display: flex; align-items: center; gap: 8px; font-size: 1.2em; font-weight: bold; }
+.resource .icon { font-size: 1.3em; }
+
+#healthBar { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width: 300px; height: 30px; background: rgba(0, 0, 0, 0.6); border-radius: 15px; border: 2px solid rgba(255, 255, 255, 0.2); overflow: hidden; }
+#healthFill { height: 100%; width: 100%; background: linear-gradient(90deg, #ff3333, #ff6666); transition: width 0.3s; }
+#healthText { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; text-shadow: 0 0 5px rgba(0, 0, 0, 0.8); }
+
+#ageDisplay { position: absolute; top: 80px; left: 20px; background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 10px; border: 2px solid rgba(255, 255, 255, 0.1); }
+#xpBar { width: 150px; height: 8px; background: rgba(255, 255, 255, 0.2); border-radius: 4px; margin-top: 5px; overflow: hidden; }
+#xpFill { height: 100%; width: 0%; background: linear-gradient(90deg, #ffff00, #ffaa00); transition: width 0.3s; }
+
+#toolbar { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; background: rgba(0, 0, 0, 0.6); padding: 10px; border-radius: 15px; border: 2px solid rgba(255, 255, 255, 0.1); }
+.tool-slot { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; position: relative; }
+.tool-slot:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+.tool-slot.active { border-color: #00ffff; background: rgba(0, 255, 255, 0.2); box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+.tool-icon { font-size: 1.8em; }
+.tool-key { position: absolute; bottom: 2px; right: 5px; font-size: 0.7em; color: #888; }
+
+#craftingMenu { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.9); padding: 30px; border-radius: 15px; border: 2px solid rgba(255, 255, 255, 0.2); min-width: 300px; }
+#craftingMenu h3 { text-align: center; margin-bottom: 20px; color: #00ffff; }
+.craft-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; margin: 10px 0; background: rgba(255, 255, 255, 0.1); border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+.craft-item:hover { background: rgba(0, 255, 255, 0.2); }
+.craft-item .cost { color: #888; font-size: 0.9em; }
+
+#leaderboard { position: absolute; top: 20px; right: 20px; background: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 10px; border: 2px solid rgba(255, 255, 255, 0.1); min-width: 200px; }
+#leaderboard h3 { margin-bottom: 10px; font-size: 1em; }
+.leaderboard-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+
+#chat { position: absolute; bottom: 20px; left: 20px; width: 350px; background: rgba(0, 0, 0, 0.6); border-radius: 10px; border: 2px solid rgba(255, 255, 255, 0.1); overflow: hidden; }
+#chatMessages { height: 150px; overflow-y: auto; padding: 10px; font-size: 0.9em; }
+.chat-message { margin: 3px 0; word-wrap: break-word; }
+.chat-message .name { color: #00ffff; font-weight: bold; }
+#chatInput { width: 100%; padding: 10px; border: none; background: rgba(0, 0, 0, 0.4); color: white; outline: none; }
+
+#deathScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 500; }
+#deathScreen h2 { font-size: 4em; color: #ff3333; margin-bottom: 20px; }
+#deathScreen p { font-size: 1.5em; color: #888; }
+
+#gameCanvas { position: fixed; top: 0; left: 0; background: #7cba3d; cursor: crosshair; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.3); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.5); }
